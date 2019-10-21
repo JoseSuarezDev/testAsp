@@ -1,0 +1,58 @@
+<h3>Itrodusca el numero ASP que desea conocer:</h3>
+<input type="number" id="number">
+<button onClick="Asp()">Buscar</button>
+<div id="container"></div>
+
+<script>
+
+
+    var count = 0;
+
+    function Asp() {
+        input = document.querySelector('#number').value
+        console.log(input);        
+        document.querySelector('#container').innerHTML = ''
+        calc()
+    }
+
+    function calc() {
+
+    var final = '';
+    const variable = input;
+    // const variable = '1210';
+    var res = variable.split("");
+    console.log(res);
+
+    // posicion;
+
+    for (let index = 0; index < res.length; index++) {
+        console.log(index, res[index] );  
+        
+        var indices = [];
+        var array = res;
+        var element = index.toString();
+        var idx = array.indexOf(element);
+        while (idx != -1) {
+        indices.push(idx);
+        idx = array.indexOf(element, idx + 1);
+        }
+        console.log( `veces encontradas el ${index} :`, indices.length);
+        
+        if( parseInt(res[index])  === indices.length){
+            count++
+            final += indices.length
+            document.querySelector('#container').innerHTML += indices.length
+        }
+        
+    }
+    console.log( final);
+        
+    }
+
+
+    
+</script>
+
+<!-- SELECT name, COUNT(*) FROM productos a INNER JOIN tiendas b WHERE a.tienda_id = b.id GROUP BY name
+
+SELECT name, COUNT(*) FROM productos a INNER JOIN tiendas b WHERE a.tienda_id = b.id GROUP BY name HAVING COUNT(*) >= 15; -->
